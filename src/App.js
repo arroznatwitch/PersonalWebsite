@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { FaTwitch, FaYoutube, FaTiktok, FaInstagram } from "react-icons/fa";
 import "./App.css";
 
@@ -11,38 +11,23 @@ const socials = [
   { name: "Instagram", handle: "@arroznatwitch", url: "https://www.instagram.com/arroznatwitch/", Icon: FaInstagram, color: "#e1306c" },
 ];
 
-// Edita esta lista com as tuas parcerias reais (url e code são opcionais).
+// Logos em public/partners/<logo>. Edita descrição e link de cada parceria aqui.
 const partners = [
-  { name: "Parceiro 1", description: "Descrição curta da parceria.", url: "#", code: "ARROZ" },
-  { name: "Parceiro 2", description: "Descrição curta da parceria.", url: "#" },
-  { name: "Parceiro 3", description: "Descrição curta da parceria.", url: "#" },
+  { name: "GrowUp", logo: "growup.png", description: "Descrição em breve.", url: "#" },
+  { name: "CAH", logo: "cah.png", description: "Descrição em breve.", url: "#" },
+  { name: "TLS", logo: "tls.png", description: "Descrição em breve.", url: "#" },
 ];
 
-function TwitchEmbed() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://embed.twitch.tv/embed/v1.js";
-    script.async = true;
-    script.onload = () => {
-      new window.Twitch.Embed("twitch-embed", {
-        width: "100%",
-        height: "100%",
-        channel: CHANNEL,
-        parent: [window.location.hostname],
-      });
-    };
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-      const el = document.getElementById("twitch-embed");
-      if (el) el.innerHTML = "";
-    };
-  }, []);
-
-  return <div id="twitch-embed" className="embed" />;
+function PartnerLogo({ name, logo }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return <div className="logo-fallback">{name[0]}</div>;
+  return <img src={`${process.env.PUBLIC_URL}/partners/${logo}`} alt={name} onError={() => setFailed(true)} />;
 }
 
 function App() {
+  const hosts = new Set([window.location.hostname, "arroznatwitch.org", "www.arroznatwitch.org", "arroznatwitch.github.io"]);
+  const parents = [...hosts].map((h) => `parent=${h}`).join("&");
+
   return (
     <div className="page">
       <header className="hero">
@@ -65,17 +50,22 @@ function App() {
 
       <section>
         <h2>Vem ver a stream</h2>
-        <TwitchEmbed />
+        <iframe
+          className="embed"
+          title="Stream ArrozNaTwitch"
+          src={`https://player.twitch.tv/?channel=${CHANNEL}&${parents}&muted=true`}
+          allowFullScreen
+        />
       </section>
 
       <section>
         <h2>Parcerias</h2>
         <div className="partners">
-          {partners.map(({ name, description, url, code }) => (
+          {partners.map(({ name, logo, description, url }) => (
             <a key={name} className="card partner" href={url} target="_blank" rel="noopener noreferrer">
+              <PartnerLogo name={name} logo={logo} />
               <strong>{name}</strong>
               <span>{description}</span>
-              {code && <em>Código: {code}</em>}
             </a>
           ))}
         </div>
