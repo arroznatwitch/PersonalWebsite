@@ -13,8 +13,8 @@ const socials = [
 
 // Logos em public/partners/<logo>. Edita o nome e o link (opcional) de cada parceria aqui.
 const partners = [
-  { name: "GrowUp", logo: "growup.png" },
-  { name: "Craft And Helps", logo: "cah.png" },
+  { name: "GrowUp", logo: "growup.png", url: "https://growup.gg" },
+  { name: "Craft And Helps", logo: "cah.png", url: "https://craftandhelps.com" },
   { name: "The Last Survivor", logo: "tls.png", url: "https://playthelastsurvivor.com" },
 ];
 
