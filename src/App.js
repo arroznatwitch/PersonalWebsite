@@ -11,11 +11,11 @@ const socials = [
   { name: "Instagram", handle: "@arroznatwitch", url: "https://www.instagram.com/arroznatwitch/", Icon: FaInstagram, color: "#e1306c" },
 ];
 
-// Logos em public/partners/<logo>. Edita descrição e link de cada parceria aqui.
+// Logos em public/partners/<logo>. Edita o nome e o link (opcional) de cada parceria aqui.
 const partners = [
-  { name: "GrowUp", logo: "growup.png", description: "Parceiro do canal." },
-  { name: "CAH", logo: "cah.png", description: "Craft and Helps, parceiro do canal." },
-  { name: "TLS", logo: "tls.png", description: "The Last Survivor, servidor de Minecraft com classificações, streams e eventos.", url: "https://playthelastsurvivor.com" },
+  { name: "GrowUp", logo: "growup.png" },
+  { name: "Craft And Helps", logo: "cah.png" },
+  { name: "The Last Survivor", logo: "tls.png", url: "https://playthelastsurvivor.com" },
 ];
 
 function PartnerLogo({ name, logo }) {
@@ -61,14 +61,13 @@ function App() {
       <section>
         <h2>Parcerias</h2>
         <div className="partners">
-          {partners.map(({ name, logo, description, url }) => {
+          {partners.map(({ name, logo, url }) => {
             const Tag = url ? "a" : "div";
             const link = url ? { href: url, target: "_blank", rel: "noopener noreferrer" } : {};
             return (
               <Tag key={name} className="card partner" {...link}>
                 <PartnerLogo name={name} logo={logo} />
                 <strong>{name}</strong>
-                <span>{description}</span>
               </Tag>
             );
           })}

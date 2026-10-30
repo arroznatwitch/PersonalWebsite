@@ -88,8 +88,8 @@ h2 {
 
 .partner img,
 .partner .logo-fallback {
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   border-radius: 12px;
   object-fit: contain;
   background: #333;
