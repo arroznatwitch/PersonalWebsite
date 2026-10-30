@@ -13,9 +13,9 @@ const socials = [
 
 // Logos em public/partners/<logo>. Edita descrição e link de cada parceria aqui.
 const partners = [
-  { name: "GrowUp", logo: "growup.png", description: "Descrição em breve.", url: "#" },
-  { name: "CAH", logo: "cah.png", description: "Descrição em breve.", url: "#" },
-  { name: "TLS", logo: "tls.png", description: "Descrição em breve.", url: "#" },
+  { name: "GrowUp", logo: "growup.png", description: "Parceiro do canal." },
+  { name: "CAH", logo: "cah.png", description: "Craft and Helps, parceiro do canal." },
+  { name: "TLS", logo: "tls.png", description: "The Last Survivor, servidor de Minecraft com classificações, streams e eventos.", url: "https://playthelastsurvivor.com" },
 ];
 
 function PartnerLogo({ name, logo }) {
@@ -61,13 +61,17 @@ function App() {
       <section>
         <h2>Parcerias</h2>
         <div className="partners">
-          {partners.map(({ name, logo, description, url }) => (
-            <a key={name} className="card partner" href={url} target="_blank" rel="noopener noreferrer">
-              <PartnerLogo name={name} logo={logo} />
-              <strong>{name}</strong>
-              <span>{description}</span>
-            </a>
-          ))}
+          {partners.map(({ name, logo, description, url }) => {
+            const Tag = url ? "a" : "div";
+            const link = url ? { href: url, target: "_blank", rel: "noopener noreferrer" } : {};
+            return (
+              <Tag key={name} className="card partner" {...link}>
+                <PartnerLogo name={name} logo={logo} />
+                <strong>{name}</strong>
+                <span>{description}</span>
+              </Tag>
+            );
+          })}
         </div>
       </section>
 
