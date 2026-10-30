@@ -1,0 +1,106 @@
+:root {
+  --bg: #1a1a1a;
+  --card: #262626;
+  --text: #fff;
+  --muted: #b5b5b5;
+  --brand: #9146ff;
+}
+
+body {
+  display: block;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Montserrat", sans-serif;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+}
+
+.page a {
+  display: block;
+  margin: 0;
+  color: inherit;
+  text-align: left;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 0 16px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  color: var(--brand);
+}
+
+.tagline {
+  color: var(--muted);
+}
+
+h2 {
+  margin: 40px 0 16px;
+  font-size: 1.4rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent, var(--brand));
+}
+
+.socials,
+.partners {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.social {
+  align-items: center;
+  text-align: center;
+}
+
+.social svg {
+  color: var(--accent);
+}
+
+.social span,
+.partner span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.partner em {
+  color: var(--brand);
+  font-size: 0.85rem;
+}
+
+.embed {
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+footer {
+  margin-top: 48px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
